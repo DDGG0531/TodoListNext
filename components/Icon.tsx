@@ -19,22 +19,21 @@ export const HeroIcon: React.FC<{
       .join("") + "Icon";
 
   // @ts-ignore
-  let TheIcon: JSX.Element;
-  if (active) {
-    TheIcon = iconsSolid[iconName];
-  } else {
-    TheIcon = iconsOutline[iconName];
-  }
+  const TheIcon: JSX.Element = active
+    ? // @ts-ignore
+      iconsSolid[iconName]
+    : // @ts-ignore
+      iconsOutline[iconName];
 
   return (
     <>
-      {/* @ts-ignore */}
       <button
         onClick={() => {
           callBack();
         }}
         className={clsx("rounded-full p-1", className)}
       >
+        {/* @ts-ignore */}
         <TheIcon role="button" className="h-6 w-6 " />
       </button>
     </>
