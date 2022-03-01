@@ -11,7 +11,9 @@ import useSWR from "swr";
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const dev = process.env.NODE_ENV !== "production";
-const server = dev ? "http://localhost:3000" : "";
+const server = dev
+  ? "http://localhost:3000"
+  : "https://todo-list-next-zeta.vercel.app";
 const URL = `${server}/api/todo`;
 
 const Home: NextPage = ({
