@@ -20,6 +20,7 @@ const Home: NextPage = ({
   fallbackData,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const { data: todos, error } = useSWR(URL, fetcher, { fallbackData });
+
   return (
     <>
       <PageTitle text="記事本" />
@@ -29,9 +30,7 @@ const Home: NextPage = ({
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  console.log("getServerSideProps start");
   const data = await fetcher(URL);
-  console.log("getServerSideProps", data);
   return { props: { fallbackData: data } };
 };
 
