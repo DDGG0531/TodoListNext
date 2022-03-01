@@ -3,7 +3,7 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 const TodoItem: React.FC<{
-  todo: IList;
+  todo: ITodo;
   active: boolean;
   callBack: () => void;
 }> = ({ todo, active, callBack }) => {
@@ -28,16 +28,18 @@ const TodoItem: React.FC<{
   );
 };
 
-export interface IList {
+export interface ITodo {
   message: string;
   finished: boolean;
   id: string;
 }
 
-const TodoList: React.FC = () => {
-  const [list, setList] = useState<Array<IList>>([]);
+const TodoList: React.FC<{
+  defaultTodos: ITodo[];
+}> = ({ defaultTodos }) => {
+  const [list, setList] = useState<Array<ITodo>>([...defaultTodos]);
 
-  let createListItem: () => IList = () => {
+  let createListItem: () => ITodo = () => {
     return {
       message: "",
       finished: false,
